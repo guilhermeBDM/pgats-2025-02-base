@@ -1,0 +1,157 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-09-22T01:08:58.221Z",
+    "end": "2025-09-22T01:08:58.273Z",
+    "duration": 52,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d2f7c1ca-5e2d-4f8c-8352-3f62ca468582",
+      "title": "",
+      "fullFile": "C:\\Users\\PERSONAL\\Documents\\pgats-2025-02-base\\test\\rest\\external\\checkoutExternal.test.js",
+      "file": "\\test\\rest\\external\\checkoutExternal.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6c7fbc22-127e-4580-9318-12d0774c501a",
+          "title": "Checkout",
+          "fullFile": "C:\\Users\\PERSONAL\\Documents\\pgats-2025-02-base\\test\\rest\\external\\checkoutExternal.test.js",
+          "file": "\\test\\rest\\external\\checkoutExternal.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "319f68c1-53e6-4ac2-9526-12b0600b26f0",
+              "title": "POST /api/checkout",
+              "fullFile": "C:\\Users\\PERSONAL\\Documents\\pgats-2025-02-base\\test\\rest\\external\\checkoutExternal.test.js",
+              "file": "\\test\\rest\\external\\checkoutExternal.test.js",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"POST /api/checkout\"",
+                  "fullTitle": "Checkout POST /api/checkout \"before all\" hook in \"POST /api/checkout\"",
+                  "timedOut": false,
+                  "duration": 40,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const respostaLogin = await request(process.env.BASE_URL_REST)\n    .post('/api/users/login')\n    .send({\n        email: 'alice@email.com',\n        password: '123456'\n    });\ntoken = respostaLogin.body.token;",
+                  "err": {},
+                  "uuid": "af82fc38-3fef-45fd-bffd-7ae4fa9f5f30",
+                  "parentUUID": "319f68c1-53e6-4ac2-9526-12b0600b26f0",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Quando informo um produto inexistente recebo 400",
+                  "fullTitle": "Checkout POST /api/checkout Quando informo um produto inexistente recebo 400",
+                  "timedOut": false,
+                  "duration": 6,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const resposta = await request(process.env.BASE_URL_REST)\n    .post('/api/checkout')\n    .set('Authorization', `Bearer ${token}`)\n    .send({\n        items: [{ productId: 3, quantity: 1 }],\n        freight: 20,\n        paymentMethod: 'credit_card',\n        cardData: {\n            number: '4111111111111111',\n            name: 'Alice',\n            expiration: '12/30',\n            cvv: '123'\n        }\n    });\nexpect(resposta.status).to.equal(400);\nexpect(resposta.body).to.have.property('error', 'Produto não encontrado');",
+                  "err": {},
+                  "uuid": "299f0b96-7671-422e-8926-c1cd5f87132b",
+                  "parentUUID": "319f68c1-53e6-4ac2-9526-12b0600b26f0",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Quando informo uma transacao valida espero 200",
+                  "fullTitle": "Checkout POST /api/checkout Quando informo uma transacao valida espero 200",
+                  "timedOut": false,
+                  "duration": 3,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const resposta = await request(process.env.BASE_URL_REST)\n    .post('/api/checkout')\n    .set('Authorization', `Bearer ${token}`)\n    .send({\n        items: [{ productId: 1, quantity: 2 }],\n        freight: 20,\n        paymentMethod: 'credit_card',\n        cardData: {\n            number: '4111111111111111',\n            name: 'Alice',\n            expiration: '12/30',\n            cvv: '123'\n        }\n    });\nexpect(resposta.status).to.equal(200);",
+                  "err": {},
+                  "uuid": "15117760-4dcb-4811-9a5d-715e92e2956e",
+                  "parentUUID": "319f68c1-53e6-4ac2-9526-12b0600b26f0",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "299f0b96-7671-422e-8926-c1cd5f87132b",
+                "15117760-4dcb-4811-9a5d-715e92e2956e"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 9,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 10000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.0"
+    }
+  }
+}
